@@ -648,9 +648,9 @@ export function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-16 text-center"
+          className="mt-12 sm:mt-16 text-center px-4 sm:px-0"
         >
-          <div className="inline-flex items-center gap-6 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <div className="flex flex-col sm:flex-row sm:inline-flex items-center justify-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
             <div className="flex items-center gap-2 text-white/60">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
@@ -658,9 +658,9 @@ export function PricingSection() {
               >
                 <Shield className="w-5 h-5 text-emerald-400" />
               </motion.div>
-              <span className="text-sm font-medium">Secure Payment</span>
+              <span className="text-xs sm:text-sm font-medium">Secure Payment</span>
             </div>
-            <div className="w-px h-6 bg-white/10" />
+            <div className="hidden sm:block w-px h-6 bg-white/10" />
             <div className="flex items-center gap-2 text-white/60">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -668,9 +668,9 @@ export function PricingSection() {
               >
                 <Zap className="w-5 h-5 text-amber-400" />
               </motion.div>
-              <span className="text-sm font-medium">Instant Activation</span>
+              <span className="text-xs sm:text-sm font-medium">Instant Activation</span>
             </div>
-            <div className="w-px h-6 bg-white/10" />
+            <div className="hidden sm:block w-px h-6 bg-white/10" />
             <div className="flex items-center gap-2 text-white/60">
               <motion.div
                 animate={{ scale: [1, 1.1, 1] }}

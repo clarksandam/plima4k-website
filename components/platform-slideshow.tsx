@@ -1,9 +1,11 @@
 "use client"
 
+import { useEffect } from "react"
+import { useState } from "react"
 import type React from "react"
-
-import { motion, useMotionValue, useTransform, animate } from "framer-motion"
-import { useState, useEffect } from "react"
+import { Tv, Film, Sparkles, Headphones } from "lucide-react"
+import { useMedia } from "@/hooks/use-media"
+import { useMotionValue, useTransform, motion, animate } from "framer-motion"
 
 // Platform data with brand colors
 const platforms = [
@@ -263,19 +265,20 @@ function PlatformLogo({ name, color, isHovered }: { name: string; color: string;
 }
 
 // Animated counter component
-function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
+function AnimatedNumber({ value, suffix = "", isMobile = false }: { value: number; suffix?: string; isMobile?: boolean }) {
   const count = useMotionValue(0)
   const rounded = useTransform(count, (latest) => Math.round(latest))
   const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
-    const animation = animate(count, value, { duration: 2, ease: "easeOut" })
+    const duration = isMobile ? 1 : 2
+    const animation = animate(count, value, { duration, ease: "easeOut" })
     const unsubscribe = rounded.on("change", (latest) => setDisplayValue(latest))
     return () => {
       animation.stop()
       unsubscribe()
     }
-  }, [count, rounded, value])
+  }, [count, rounded, value, isMobile])
 
   return (
     <span>
@@ -310,6 +313,7 @@ function FloatingParticle({ delay, color }: { delay: number; color: string }) {
 export function PlatformSlideshow() {
   const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const isMobile = useMedia("(max-width: 768px)")
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -438,11 +442,7 @@ export function PlatformSlideshow() {
 
         {/* Platform slideshow with 3D perspective */}
         <div className="relative" style={{ perspective: "1000px" }}>
-          {/* Edge fades with gradient */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-48 z-20 bg-gradient-to-r from-[#080c18] via-[#080c18]/80 to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-48 z-20 bg-gradient-to-l from-[#080c18] via-[#080c18]/80 to-transparent pointer-events-none" />
-
-          <div className="overflow-hidden relative z-10 py-4">
+          <div className="overflow-hidden relative z-10 py-8 sm:py-12">
             <motion.div
               className="flex gap-5 items-center"
               animate={{ x: [0, -160 * platforms.length] }}
@@ -483,7 +483,7 @@ export function PlatformSlideshow() {
                     />
 
                     <div
-                      className="relative w-[150px] h-[72px] rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center px-4 group cursor-pointer overflow-hidden"
+                      className="relative w-[150px] h-[108px] rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center px-4 group cursor-pointer overflow-hidden"
                       style={{
                         borderColor: isHovered ? `${platform.color}50` : "rgba(255,255,255,0.1)",
                         transition: "border-color 0.3s ease",
@@ -543,37 +543,91 @@ export function PlatformSlideshow() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 mt-14"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mt-12 sm:mt-16"
         >
           {[
-            { value: 50, suffix: "+", label: "Platforms", icon: "📺" },
-            { value: 140000, suffix: "+", label: "Movies & Series", icon: "🎬" },
-            { value: 4, suffix: "K", label: "Quality", icon: "✨" },
-            { value: 24, suffix: "/7", label: "Support", icon: "💬" },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="relative group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * index }}
-              whileHover={{ y: -4 }}
-            >
-              <div className="relative p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/5 backdrop-blur-sm text-center overflow-hidden group-hover:border-primary/30 transition-colors duration-300">
-                {/* Glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 to-transparent" />
+            { value: 50, suffix: "+", label: "Platforms", icon: Tv, color: "from-cyan-500/20 to-blue-500/20", iconColor: "text-cyan-400" },
+            { value: 140000, suffix: "+", label: "Movies & Series", icon: Film, color: "from-blue-500/20 to-purple-500/20", iconColor: "text-blue-400" },
+            { value: 4, suffix: "K", label: "Quality", icon: Sparkles, color: "from-purple-500/20 to-pink-500/20", iconColor: "text-purple-400" },
+            { value: 24, suffix: "/7", label: "Support", icon: Headphones, color: "from-pink-500/20 to-cyan-500/20", iconColor: "text-pink-400" },
+          ].map((stat, index) => {
+            const Icon = stat.icon
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: isMobile ? 0.05 * index : 0.1 * index, duration: 0.5 }}
+                whileHover={isMobile ? {} : { y: -8, scale: 1.05 }}
+                className="group relative"
+              >
+                {/* Background gradient orb */}
+                {!isMobile && (
+                  <motion.div
+                    className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(135deg, ${stat.color.split(" ")[1]} 0%, ${stat.color.split(" ")[3]} 100%)`,
+                    }}
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                  />
+                )}
 
-                <div className="relative z-10">
-                  <span className="text-2xl mb-2 block">{stat.icon}</span>
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                    <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                {/* Main card */}
+                <div className={`relative p-4 sm:p-6 lg:p-8 rounded-2xl backdrop-blur-xl border border-white/10 overflow-hidden transition-all duration-300 group-hover:border-white/30 group-hover:bg-gradient-to-br ${stat.color}`}>
+                  {/* Gradient background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-40 group-hover:opacity-60 transition-opacity duration-300`} />
+
+                  {/* Shine effect on hover */}
+                  {!isMobile && (
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                      style={{
+                        background: "linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
+                      }}
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.6 }}
+                    />
+                  )}
+
+                  {/* Content */}
+                  <div className="relative z-10 flex flex-col items-center text-center space-y-2 sm:space-y-3">
+                    {/* Icon */}
+                    <motion.div
+                      className={`p-2.5 sm:p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 group-hover:bg-white/20 group-hover:border-white/40 transition-all ${stat.iconColor}`}
+                      animate={isMobile ? {} : { scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                    >
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </motion.div>
+
+                    {/* Number */}
+                    <div className="space-y-1">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent group-hover:to-white transition-all">
+                        <AnimatedNumber value={stat.value} suffix={stat.suffix} isMobile={isMobile} />
+                      </div>
+                    </div>
+
+                    {/* Label */}
+                    <p className="text-xs sm:text-sm font-medium text-white/70 group-hover:text-white/90 transition-colors">
+                      {stat.label}
+                    </p>
                   </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</div>
+
+                  {/* Bottom accent line */}
+                  <motion.div
+                    className="absolute bottom-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + index * 0.1, duration: 0.8 }}
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
 
