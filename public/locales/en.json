@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "home": "Home",
+    "plans": "Plans",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Stream Everything in 4K",
+    "subtitle": "30,000+ Live Channels & 140,000+ VOD Movies & Series",
+    "cta": "View Plans",
+    "trust": "Trusted by 50,000+ Active Users"
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Select devices and duration to get started",
+    "month3": "3 Months",
+    "month6": "6 Months",
+    "month12": "12 Months",
+    "month24": "24 Months",
+    "buyNow": "Proceed",
+    "devices": "Devices",
+    "features": {
+      "antiBuffering": "Anti Buffering Technology",
+      "channels": "30,000+ Live Channels",
+      "vod": "140,000+ VOD Movies & Series",
+      "quality4k": "4K Quality",
+      "multiDevice": "Multi-Device Support",
+      "epg": "EPG Guide",
+      "support24": "24/7 Support",
+      "hd": "Full HD Quality",
+      "catchup": "Catch-up TV",
+      "parental": "Parental Control",
+      "recordings": "Cloud Recordings"
+    }
+  },
+  "sports": {
+    "title": "Unlimited Access to the World's Biggest Leagues and Tournaments",
+    "subtitle": "Stream every match from the Champions League, Premier League, World Cup, and beyond"
+  },
+  "devices": {
+    "title": "Supported Devices",
+    "android": "Android",
+    "ios": "iOS",
+    "windows": "Windows",
+    "firetv": "Fire TV",
+    "magbox": "MAGBox",
+    "smarttv": "Smart TV",
+    "lgsmart": "LG Smart",
+    "chrome": "Chrome"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "email": "Email Us",
+    "whatsapp": "WhatsApp"
+  },
+  "checkout": {
+    "title": "Complete Your Purchase",
+    "name": "Full Name",
+    "email": "Email",
+    "country": "Country",
+    "paymentMethod": "Payment Method",
+    "proceed": "Proceed",
+    "orderSummary": "Order Summary"
+  },
+  "invoice": {
+    "title": "Order Confirmed",
+    "subtitle": "Thank you for your purchase! A support team member will contact you soon.",
+    "whatsapp": "Continue on WhatsApp",
+    "telegram": "Continue on Telegram",
+    "email": "Send via Email"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "refund": "Refund Policy",
+    "copyright": "Made with love by PLIMA4K Team © 2026"
+  }
+}

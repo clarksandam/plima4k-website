@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "plans": "Pläne",
+    "faq": "Häufig Gestellte Fragen",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Streame Alles in 4K",
+    "subtitle": "30.000+ Live-Kanäle & 140.000+ VOD-Filme & Serien",
+    "cta": "Pläne Ansehen",
+    "trust": "Vertraut von 50.000+ Aktiven Benutzern"
+  },
+  "pricing": {
+    "title": "Wählen Sie Ihren Plan",
+    "subtitle": "Wählen Sie Geräte und Dauer um zu beginnen",
+    "month3": "3 Monate",
+    "month6": "6 Monate",
+    "month12": "12 Monate",
+    "month24": "24 Monate",
+    "buyNow": "Fortfahren",
+    "devices": "Geräte",
+    "features": {
+      "antiBuffering": "Anti-Puffern-Technologie",
+      "channels": "30.000+ Live-Kanäle",
+      "vod": "140.000+ VOD-Filme & Serien",
+      "quality4k": "4K-Qualität",
+      "multiDevice": "Multi-Geräte-Unterstützung",
+      "epg": "EPG-Leitfaden",
+      "support24": "24/7 Support",
+      "hd": "Full HD-Qualität",
+      "catchup": "Catch-up TV",
+      "parental": "Elternkontrolle",
+      "recordings": "Cloud-Aufnahmen"
+    }
+  },
+  "sports": {
+    "title": "Unbegrenzter Zugang zu den größten Ligen und Turnieren der Welt",
+    "subtitle": "Streame jedes Match aus der Champions League, Premier League, Weltmeisterschaft und mehr"
+  },
+  "devices": {
+    "title": "Unterstützte Geräte",
+    "android": "Android",
+    "ios": "iOS",
+    "windows": "Windows",
+    "firetv": "Fire TV",
+    "magbox": "MAGBox",
+    "smarttv": "Smart TV",
+    "lgsmart": "LG Smart",
+    "chrome": "Chrome"
+  },
+  "faq": {
+    "title": "Häufig Gestellte Fragen",
+    "email": "Senden Sie uns eine E-Mail",
+    "whatsapp": "WhatsApp"
+  },
+  "checkout": {
+    "title": "Schließen Sie Ihren Kauf ab",
+    "name": "Vollständiger Name",
+    "email": "E-Mail",
+    "country": "Land",
+    "paymentMethod": "Zahlungsmethode",
+    "proceed": "Fortfahren",
+    "orderSummary": "Bestellübersicht"
+  },
+  "invoice": {
+    "title": "Bestellung Bestätigt",
+    "subtitle": "Danke für Ihren Einkauf! Ein Mitglied unseres Support-Teams wird Sie bald kontaktieren.",
+    "whatsapp": "Auf WhatsApp Fortfahren",
+    "telegram": "Auf Telegram Fortfahren",
+    "email": "Per E-Mail Senden"
+  },
+  "footer": {
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen",
+    "refund": "Rückgaberichtlinie",
+    "copyright": "Mit Liebe vom PLIMA4K Team © 2026"
+  }
+}
